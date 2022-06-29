@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Cm7LS2d7HoDFTxFRwDuND5yLNw63F0XQDmswj1IMkGuijzua1n5Wnj97xQPXnArcXaVCUt4SlUf2Nqpo4eBzrw==",
+  "dgSpecHash": "sHj4fB2oaEJh8Yca7v9TC0PSjkv0ID+EBw08UUSZobFvyOloQ/g1x6allt9gXhq3f+BAc40k3YhsAyk6zG6Klw==",
   "success": true,
-  "projectFilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj",
+  "projectFilePath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

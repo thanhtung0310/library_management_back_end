@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using library_management_ba.Data;
+using library_management_ba.Repository;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,12 @@ builder.Services.AddDbContext<DatabaseContext>((options) =>
 {
   options.UseSqlServer(connectionString);
 });
+
+DependencyInjection.InjectService(builder.Services);
+
+// Add Singleton service
+builder.Services.AddSingleton<IDbConnection>((db) => new SqlConnection(connectionString));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
