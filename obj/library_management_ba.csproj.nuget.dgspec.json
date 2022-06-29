@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj": {}
+    "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj": {}
   },
   "projects": {
-    "d:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj": {
+    "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj",
+        "projectUniqueName": "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj",
         "projectName": "library_management_ba",
-        "projectPath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj",
+        "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\obj\\",
+        "outputPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
