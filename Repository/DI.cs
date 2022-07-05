@@ -4,7 +4,9 @@ namespace library_management_ba.Repository
   {
     public static void InjectService(IServiceCollection services)
     {
-      services.AddScoped<IService, Service>();
+      services.AddScoped<IGetService, GetService>();
+      services.AddScoped<IPostService, PostService>();
+
       services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
     }
   }

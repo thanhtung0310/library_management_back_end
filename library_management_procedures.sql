@@ -343,11 +343,7 @@ GO
 -- EXEC db_LibraryManagement.dbo.spBookLoans_Insert 7,4,101
 
 -- RETURN BOOK LOANS FOR BORROWER (book_loans_Status='Done')
---check for borrower
---check for book_id
---update book_loans_Status = 'Done'
 
--- wrong function @borrower_id
 ALTER PROCEDURE dbo.spBookLoans_Return
 	(@loan_id int)
 AS
@@ -363,11 +359,13 @@ BEGIN
 				WHERE [book_loans_LoansID] = @loan_id
 
 		SELECT TOP 1
-			l.[book_loans_LoansID] 'loan_id', b.[book_Title] 'book_title', l.[book_loans_BranchID] 'branch_id', l.[book_loans_CardNo] 'borrower_id', l.[book_loans_DateOut] 'loan_date', l.[book_loans_DueDate] 'due_date'
+			l.[book_loans_LoansID] 'loan_id', b.[book_Title] 'book_title', brw.[borrower_BorrowerName] 'borrower_name', brw.[borrower_BorrowerPhone] 'borrower_contact_number', l.[book_loans_DateOut] 'loan_date', l.[book_loans_DueDate] 'due_date', brh.[library_branch_BranchName] 'branch_name'
 		FROM db_LibraryManagement.dbo.tbl_book_loans l
 			JOIN db_LibraryManagement.dbo.tbl_book b ON b.[book_BookID] = l.[book_loans_BookID]
+			JOIN db_LibraryManagement.dbo.tbl_borrower brw ON brw.[borrower_CardNo] = l.[book_loans_CardNo]
+			JOIN db_LibraryManagement.dbo.tbl_library_branch brh ON brh.[library_branch_BranchID] = l.[book_loans_BranchID]
 		WHERE l.[book_loans_LoansID] = @loan_id
-		ORDER BY l.[book_loans_LoansID] DESC
+		ORDER BY l.[book_loans_LoansID] DESC, l.[book_loans_DueDate] DESC
 	END
 	ELSE
 		BEGIN
