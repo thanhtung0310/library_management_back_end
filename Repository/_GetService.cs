@@ -43,7 +43,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -65,7 +65,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -87,7 +87,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -111,7 +111,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -133,7 +133,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -157,7 +157,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -181,7 +181,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -205,7 +205,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -229,7 +229,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -254,7 +254,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {
@@ -278,7 +278,7 @@ namespace library_management_ba.Repository
       catch (Exception ex)
       {
         response.errorResp();
-        throw ex;
+        // throw ex;
       }
       finally
       {

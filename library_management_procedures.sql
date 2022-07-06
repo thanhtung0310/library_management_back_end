@@ -110,13 +110,14 @@ BEGIN
 	SELECT bc.[book_copies_BranchID] 'branch_id', bc.[book_copies_BookID] 'book_id', bc.[book_copies_No_Of_Copies] - COUNT(l.[book_loans_BookID]) 'available_count', bc.[book_copies_No_Of_Copies] 'total_count'
 	FROM db_LibraryManagement.dbo.tbl_book_copies bc
 		JOIN db_LibraryManagement.dbo.tbl_book_loans l ON l.[book_loans_BranchID] = bc.[book_copies_BranchID] AND l.[book_loans_BookID] = bc.[book_copies_BookID]
+	WHERE l.[book_loans_Status] = 'In Progress'
 	GROUP BY bc.[book_copies_BranchID], bc.[book_copies_BookID], bc.[book_copies_No_Of_Copies], l.[book_loans_BookID]
 END
 GO
 -- EXEC db_LibraryManagement.dbo.spAvailBookCopies_GetAll
 
 -- GET AVAILABLE BOOKS IN BRANCH
-CREATE PROCEDURE dbo.spAvailBookCopiesByBranch_GetAll
+ALTER PROCEDURE dbo.spAvailBookCopiesByBranch_GetAll
 	(@branch_id int)
 AS
 BEGIN
@@ -128,8 +129,8 @@ BEGIN
 
 		SELECT bc.[book_copies_BranchID] 'branch_id', bc.[book_copies_BookID] 'book_id', bc.[book_copies_No_Of_Copies] - COUNT(l.[book_loans_BookID]) 'available_count', bc.[book_copies_No_Of_Copies] 'total_count'
 		FROM db_LibraryManagement.dbo.tbl_book_copies bc
-			JOIN db_LibraryManagement.dbo.tbl_book_loans l ON l.[book_loans_BranchID] = bc.[book_copies_BranchID] AND l.[book_loans_BookID] = bc.[book_copies_BookID]
-		WHERE bc.[book_copies_BranchID] = @branch_id
+			LEFT JOIN db_LibraryManagement.dbo.tbl_book_loans l ON l.[book_loans_BranchID] = bc.[book_copies_BranchID] AND l.[book_loans_BookID] = bc.[book_copies_BookID]
+		WHERE bc.[book_copies_BranchID] = @branch_id AND l.[book_loans_Status] = 'In Progress'
 		GROUP BY bc.[book_copies_BranchID], bc.[book_copies_BookID], bc.[book_copies_No_Of_Copies], l.[book_loans_BookID]
 	END
 	ELSE
@@ -140,7 +141,7 @@ BEGIN
 	END
 END
 GO
--- EXEC db_LibraryManagement.dbo.spAvailBookCopiesByBranch_GetAll 3
+-- EXEC db_LibraryManagement.dbo.spAvailBookCopiesByBranch_GetAll 4
 
 -- GET AVAILABLE BOOK IN BRANCH
 ALTER PROCEDURE dbo.spAvailBookCopiesByBranch_Get
@@ -156,8 +157,8 @@ BEGIN
 
 		SELECT bc.[book_copies_BranchID] 'branch_id', bc.[book_copies_BookID] 'book_id', bc.[book_copies_No_Of_Copies] - COUNT(l.[book_loans_BookID]) 'available_count', bc.[book_copies_No_Of_Copies] 'total_count'
 		FROM db_LibraryManagement.dbo.tbl_book_copies bc
-			JOIN db_LibraryManagement.dbo.tbl_book_loans l ON l.[book_loans_BranchID] = bc.[book_copies_BranchID] AND l.[book_loans_BookID] = bc.[book_copies_BookID]
-		WHERE bc.[book_copies_BranchID] = @branch_id AND l.[book_loans_BookID] = @book_id
+			LEFT JOIN db_LibraryManagement.dbo.tbl_book_loans l ON l.[book_loans_BranchID] = bc.[book_copies_BranchID] AND l.[book_loans_BookID] = bc.[book_copies_BookID]
+		WHERE bc.[book_copies_BranchID] = @branch_id AND l.[book_loans_BookID] = @book_id AND l.[book_loans_Status] = 'In Progress'
 		GROUP BY bc.[book_copies_BranchID], bc.[book_copies_BookID], bc.[book_copies_No_Of_Copies], l.[book_loans_BookID]
 	END
 	ELSE
