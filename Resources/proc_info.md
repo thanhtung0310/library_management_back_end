@@ -68,3 +68,32 @@
 
 - in: @loan_id
 - out: loan_id, book_title, borrower_name, borrower_contact_number, loan_date, due_date, branch_name
+
+16. spUsers_GetAll
+
+- out: userID, userFullname, userEmail, userRole, userToken
+
+17. spUser_Get
+
+- in: @userEmail
+- out: userID, userFullname, userEmail, userRole, userToken
+
+18. spUser_Create
+
+- in: @userFullname, @userEmail, @userPassword, @userRole
+- out: userID, userFullname, userEmail, userRole, userToken
+
+19. spUserPwd_Get
+
+- in: @userEmail
+- out: userPassword
+
+20. spUserToken_Insert
+
+- in: @userEmail, @userToken
+- out: userID, userFullname, userEmail, userRole, userToken
+
+21. spUserToken_Clear
+
+- in: @userEmail
+- out: userID, userFullname, userEmail, userRole, userToken

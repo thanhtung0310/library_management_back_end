@@ -23,39 +23,39 @@ namespace library_management_ba.Controllers
 
     // GET: api/Loans
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<tbl_book_loans>>> GetLoan()
+    public async Task<ActionResult<IEnumerable<LoanOrder>>> GetLoan()
     {
-      if (_context.tbl_book_loans == null)
+      if (_context.LoanOrders == null)
       {
         return NotFound();
       }
-      return await _context.tbl_book_loans.ToListAsync();
+      return await _context.LoanOrders.ToListAsync();
     }
 
     // GET: api/Loans/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<tbl_book_loans>> GetLoans(int id)
+    public async Task<ActionResult<LoanOrder>> GetLoans(int id)
     {
-      if (_context.tbl_book_loans == null)
+      if (_context.LoanOrders == null)
       {
         return NotFound();
       }
-      var tbl_book_loans = await _context.tbl_book_loans.FindAsync(id);
+      var LoanOrder = await _context.LoanOrders.FindAsync(id);
 
-      if (tbl_book_loans == null)
+      if (LoanOrder == null)
       {
         return NotFound();
       }
 
-      return tbl_book_loans;
+      return LoanOrder;
     }
 
     // PUT: api/Loans/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateLoan(int id, tbl_book_loans loan)
+    public async Task<IActionResult> UpdateLoan(int id, LoanOrder loan)
     {
-      if (id != loan.book_loans_LoansID)
+      if (id != loan.loanID)
       {
         return BadRequest();
       }
@@ -84,33 +84,33 @@ namespace library_management_ba.Controllers
     // POST: api/Loans
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
-    public async Task<ActionResult<tbl_book_loans>> CreateLoan(tbl_book_loans loan)
+    public async Task<ActionResult<LoanOrder>> CreateLoan(LoanOrder loan)
     {
-      if (_context.tbl_book_loans == null)
+      if (_context.LoanOrders == null)
       {
-        return Problem("Entity set 'DatabaseContext.tbl_book_loans'  is null.");
+        return Problem("Entity set 'DatabaseContext.LoanOrder'  is null.");
       }
-      _context.tbl_book_loans.Add(loan);
+      _context.LoanOrders.Add(loan);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetLoan", new { id = loan.book_loans_LoansID }, loan);
+      return CreatedAtAction("GetLoan", new { id = loan.loanID }, loan);
     }
 
     // DELETE: api/Loans/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteLoan(int id)
     {
-      if (_context.tbl_book_loans == null)
+      if (_context.LoanOrders == null)
       {
         return NotFound();
       }
-      var tbl_book_loans = await _context.tbl_book_loans.FindAsync(id);
-      if (tbl_book_loans == null)
+      var LoanOrder = await _context.LoanOrders.FindAsync(id);
+      if (LoanOrder == null)
       {
         return NotFound();
       }
 
-      _context.tbl_book_loans.Remove(tbl_book_loans);
+      _context.LoanOrders.Remove(LoanOrder);
       await _context.SaveChangesAsync();
 
       return NoContent();
@@ -118,7 +118,7 @@ namespace library_management_ba.Controllers
 
     private bool loanExists(int id)
     {
-      return (_context.tbl_book_loans?.Any(e => e.book_loans_LoansID == id)).GetValueOrDefault();
+      return (_context.LoanOrders?.Any(e => e.loanID == id)).GetValueOrDefault();
     }
   }
 }

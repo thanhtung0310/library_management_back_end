@@ -3,22 +3,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace library_management_ba.Entities
 {
-  public class tbl_publisher
+  [Table("tbl_publisher")]
+  public class Publisher
   {
     [Key]
     [NotMapped]
-    [Display(Name = "publisher_id")]
-    public int publisher_PublisherID { get; set; }
+    [Column("publisher_PublisherID")]
+    public int publisherID { get; set; }
     [Required]
     [StringLength(100)]
-    [Display(Name = "publisher_name")]
-    public string? publisher_PublisherName { get; set; }
+    [Column("publisher_PublisherName")]
+    public string? publisherName { get; set; }
     [Required]
     [StringLength(200)]
-    [Display(Name = "publisher_address")]
-    public string? publisher_PublisherAddress { get; set; }
+    [Column("publisher_PublisherAddress")]
+    public string? publisherAddr { get; set; }
     [Required]
-    [Display(Name = "publisher_contact_number")]
-    public string? publisher_PublisherPhone { get; set; }
+    [StringLength(50)]
+    [Column("publisher_PublisherPhone")]
+    public string? publisherNum { get; set; }
   }
 }

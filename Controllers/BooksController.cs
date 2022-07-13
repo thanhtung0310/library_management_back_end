@@ -23,39 +23,39 @@ namespace library_management_ba.Controllers
 
     // GET: api/books
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<tbl_book>>> GetBooks()
+    public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
     {
-      if (_context.tbl_book == null)
+      if (_context.Books == null)
       {
         return NotFound();
       }
-      return await _context.tbl_book.ToListAsync();
+      return await _context.Books.ToListAsync();
     }
 
     // GET: api/books/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<tbl_book>> GetBook(int id)
+    public async Task<ActionResult<Book>> GetBook(int id)
     {
-      if (_context.tbl_book == null)
+      if (_context.Books == null)
       {
         return NotFound();
       }
-      var tbl_book = await _context.tbl_book.FindAsync(id);
+      var Book = await _context.Books.FindAsync(id);
 
-      if (tbl_book == null)
+      if (Book == null)
       {
         return NotFound();
       }
 
-      return tbl_book;
+      return Book;
     }
 
     // PUT: api/books/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateBook(int id, tbl_book book)
+    public async Task<IActionResult> UpdateBook(int id, Book book)
     {
-      if (id != book.book_BookID)
+      if (id != book.bookID)
       {
         return BadRequest();
       }
@@ -84,33 +84,33 @@ namespace library_management_ba.Controllers
     // POST: api/books
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
-    public async Task<ActionResult<tbl_book>> CreateBook(tbl_book book)
+    public async Task<ActionResult<Book>> CreateBook(Book book)
     {
-      if (_context.tbl_book == null)
+      if (_context.Books == null)
       {
-        return Problem("Entity set 'DatabaseContext.tbl_book' is null.");
+        return Problem("Entity set 'DatabaseContext.Book' is null.");
       }
-      _context.tbl_book.Add(book);
+      _context.Books.Add(book);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetBook", new { id = book.book_BookID }, book);
+      return CreatedAtAction("GetBook", new { id = book.bookID }, book);
     }
 
     // DELETE: api/books/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteBook(int id)
     {
-      if (_context.tbl_book == null)
+      if (_context.Books == null)
       {
         return NotFound();
       }
-      var tbl_book = await _context.tbl_book.FindAsync(id);
-      if (tbl_book == null)
+      var Book = await _context.Books.FindAsync(id);
+      if (Book == null)
       {
         return NotFound();
       }
 
-      _context.tbl_book.Remove(tbl_book);
+      _context.Books.Remove(Book);
       await _context.SaveChangesAsync();
 
       return NoContent();
@@ -118,7 +118,7 @@ namespace library_management_ba.Controllers
 
     private bool bookExists(int id)
     {
-      return (_context.tbl_book?.Any(e => e.book_BookID == id)).GetValueOrDefault();
+      return (_context.Books?.Any(e => e.bookID == id)).GetValueOrDefault();
     }
   }
 }

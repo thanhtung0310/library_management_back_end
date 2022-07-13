@@ -3,32 +3,33 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace library_management_ba.Entities
 {
-  public class tbl_book_loans
+  [Table("tbl_book_loans")]
+  public class LoanOrder
   {
     [Key]
     [NotMapped]
-    [Display(Name = "Id")]
-    public int book_loans_LoansID { get; set; }
+    [Column("book_loans_LoansID")]
+    public int loanID { get; set; }
     [Required]
-    [Display(Name = "book_id")]
-    public int book_loans_BookID { get; set; }
+    [Column("book_loans_BookID")]
+    public int loan_BookID { get; set; }
     [Required]
-    [Display(Name = "branch_id")]
-    public int book_loans_BranchID { get; set; }
+    [Column("book_loans_BranchID")]
+    public int loan_BranchID { get; set; }
     [Required]
-    [Display(Name = "customer_id")]
-    public int book_loans_CardNo { get; set; }
+    [Column("book_loans_CardNo")]
+    public int loan_BorrowerID { get; set; }
+    [Required]
+    [StringLength(10)]
+    [Column("book_loans_DateOut")]
+    public string? loanDate { get; set; }
+    [Required]
+    [StringLength(10)]
+    [Column("book_loans_DueDate")]
+    public string? dueDate { get; set; }
     [Required]
     [StringLength(50)]
-    [Display(Name = "loan_date")]
-    public string? book_loans_DateOut { get; set; }
-    [Required]
-    [StringLength(50)]
-    [Display(Name = "loan_date")]
-    public string? book_loans_DueDate { get; set; }
-    [Required]
-    [StringLength(50)]
-    [Display(Name = "loan_status")]
-    public string? book_loans_Status { get; set; }
+    [Column("book_loans_Status")]
+    public string? loanStatus { get; set; }
   }
 }

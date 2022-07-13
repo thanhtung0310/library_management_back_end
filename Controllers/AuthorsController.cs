@@ -23,39 +23,39 @@ namespace library_management_ba.Controllers
 
     // GET: api/authors
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<tbl_book_authors>>> GetAuthors()
+    public async Task<ActionResult<IEnumerable<Author>>> GetAuthors()
     {
-      if (_context.tbl_book_authors == null)
+      if (_context.Authors == null)
       {
         return NotFound();
       }
-      return await _context.tbl_book_authors.ToListAsync();
+      return await _context.Authors.ToListAsync();
     }
 
     // GET: api/authors/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<tbl_book_authors>> GetAuthor(int id)
+    public async Task<ActionResult<Author>> GetAuthor(int id)
     {
-      if (_context.tbl_book_authors == null)
+      if (_context.Authors == null)
       {
         return NotFound();
       }
-      var tbl_book_authors = await _context.tbl_book_authors.FindAsync(id);
+      var Author = await _context.Authors.FindAsync(id);
 
-      if (tbl_book_authors == null)
+      if (Author == null)
       {
         return NotFound();
       }
 
-      return tbl_book_authors;
+      return Author;
     }
 
     // PUT: api/authors/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
-    public async Task<ActionResult<tbl_book_authors>> UpdateAuthor(int id, tbl_book_authors author)
+    public async Task<ActionResult<Author>> UpdateAuthor(int id, Author author)
     {
-      if (id != author.book_authors_AuthorID)
+      if (id != author.authorID)
       {
         return BadRequest();
       }
@@ -84,20 +84,20 @@ namespace library_management_ba.Controllers
     // POST: api/authors
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
-    public async Task<ActionResult<tbl_book_authors>> CreateAuthor(tbl_book_authors author)
+    public async Task<ActionResult<Author>> CreateAuthor(Author author)
     {
-      if (_context.tbl_book_authors == null)
+      if (_context.Authors == null)
       {
-        return Problem("Entity set 'DatabaseContext.tbl_book_authors' is null.");
+        return Problem("Entity set 'DatabaseContext.Author' is null.");
       }
-      _context.tbl_book_authors.Add(author);
+      _context.Authors.Add(author);
       try
       {
         await _context.SaveChangesAsync();
       }
       catch (DbUpdateException)
       {
-        if (!authorExists(author.book_authors_AuthorID))
+        if (!authorExists(author.authorID))
         {
           return NotFound();
         }
@@ -107,25 +107,25 @@ namespace library_management_ba.Controllers
         }
       }
 
-      return CreatedAtAction("GetAuthor", new { id = author.book_authors_AuthorID }, author);
+      return CreatedAtAction("GetAuthor", new { id = author.authorID }, author);
     }
 
     // DELETE: api/authors/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAuthor(int id)
     {
-      if (_context.tbl_book_authors == null)
+      if (_context.Authors == null)
       {
         return NotFound();
       }
 
-      var tbl_book_authors = await _context.tbl_book_authors.FindAsync(id);
-      if (tbl_book_authors == null)
+      var Author = await _context.Authors.FindAsync(id);
+      if (Author == null)
       {
         return NotFound();
       }
 
-      _context.tbl_book_authors.Remove(tbl_book_authors);
+      _context.Authors.Remove(Author);
       await _context.SaveChangesAsync();
 
       return NoContent();
@@ -133,7 +133,7 @@ namespace library_management_ba.Controllers
 
     private bool authorExists(int id)
     {
-      return (_context.tbl_book_authors?.Any(e => e.book_authors_AuthorID == id)).GetValueOrDefault();
+      return (_context.Authors?.Any(e => e.authorID == id)).GetValueOrDefault();
     }
   }
 }

@@ -3,18 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace library_management_ba.Entities
 {
-  public class tbl_book
+  [Table("tbl_book")]
+  public class Book
   {
     [Key]
     [NotMapped]
-    [Display(Name = "book_id")]
-    public int book_BookID { get; set; }
+    [Column("book_BookID")]
+    public int bookID { get; set; }
     [Required]
     [StringLength(100)]
-    [Display(Name = "book_title")]
-    public string? book_Title { get; set; }
+    [Column("book_Title")]
+    public string? bookTitle { get; set; }
     [Required]
-    [Display(Name = "publisher_id")]
+    [Column("book_PublisherID")]
     public int book_PublisherID { get; set; }
   }
 }

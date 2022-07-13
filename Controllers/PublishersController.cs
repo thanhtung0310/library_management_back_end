@@ -23,39 +23,39 @@ namespace library_management_ba.Controllers
 
     // GET: api/Publishers
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<tbl_publisher>>> GetPublishers()
+    public async Task<ActionResult<IEnumerable<Publisher>>> GetPublishers()
     {
-      if (_context.tbl_publisher == null)
+      if (_context.Publishers == null)
       {
         return NotFound();
       }
-      return await _context.tbl_publisher.ToListAsync();
+      return await _context.Publishers.ToListAsync();
     }
 
     // GET: api/Publishers/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<tbl_publisher>> GetPublisher(int id)
+    public async Task<ActionResult<Publisher>> GetPublisher(int id)
     {
-      if (_context.tbl_publisher == null)
+      if (_context.Publishers == null)
       {
         return NotFound();
       }
-      var tbl_publisher = await _context.tbl_publisher.FindAsync(id);
+      var Publisher = await _context.Publishers.FindAsync(id);
 
-      if (tbl_publisher == null)
+      if (Publisher == null)
       {
         return NotFound();
       }
 
-      return tbl_publisher;
+      return Publisher;
     }
 
     // PUT: api/Publishers/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdatePublisher(int id, tbl_publisher publisher)
+    public async Task<IActionResult> UpdatePublisher(int id, Publisher publisher)
     {
-      if (id != publisher.publisher_PublisherID)
+      if (id != publisher.publisherID)
       {
         return BadRequest();
       }
@@ -84,20 +84,20 @@ namespace library_management_ba.Controllers
     // POST: api/Publishers
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
-    public async Task<ActionResult<tbl_publisher>> CreatePublisher(tbl_publisher publisher)
+    public async Task<ActionResult<Publisher>> CreatePublisher(Publisher publisher)
     {
-      if (_context.tbl_publisher == null)
+      if (_context.Publishers == null)
       {
-        return Problem("Entity set 'DatabaseContext.tbl_publisher' is null.");
+        return Problem("Entity set 'DatabaseContext.Publisher' is null.");
       }
-      _context.tbl_publisher.Add(publisher);
+      _context.Publishers.Add(publisher);
       try
       {
         await _context.SaveChangesAsync();
       }
       catch (DbUpdateException)
       {
-        if (publisherExists(publisher.publisher_PublisherID))
+        if (publisherExists(publisher.publisherID))
         {
           return Conflict();
         }
@@ -107,24 +107,24 @@ namespace library_management_ba.Controllers
         }
       }
 
-      return CreatedAtAction("GetPublisher", new { id = publisher.publisher_PublisherID }, publisher);
+      return CreatedAtAction("GetPublisher", new { id = publisher.publisherID }, publisher);
     }
 
     // DELETE: api/Publishers/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePublisher(int id)
     {
-      if (_context.tbl_publisher == null)
+      if (_context.Publishers == null)
       {
         return NotFound();
       }
-      var tbl_publisher = await _context.tbl_publisher.FindAsync(id);
-      if (tbl_publisher == null)
+      var Publisher = await _context.Publishers.FindAsync(id);
+      if (Publisher == null)
       {
         return NotFound();
       }
 
-      _context.tbl_publisher.Remove(tbl_publisher);
+      _context.Publishers.Remove(Publisher);
       await _context.SaveChangesAsync();
 
       return NoContent();
@@ -132,7 +132,7 @@ namespace library_management_ba.Controllers
 
     private bool publisherExists(int id)
     {
-      return (_context.tbl_publisher?.Any(e => e.publisher_PublisherID == id)).GetValueOrDefault();
+      return (_context.Publishers?.Any(e => e.publisherID == id)).GetValueOrDefault();
     }
   }
 }

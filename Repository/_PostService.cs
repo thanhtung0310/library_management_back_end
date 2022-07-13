@@ -1,4 +1,3 @@
-using System.Data;
 namespace library_management_ba.Repository
 {
   using library_management_ba.Models;
@@ -11,6 +10,9 @@ namespace library_management_ba.Repository
     Task<Response<BorrowerModel>> CreateBorrower(BorrowerModel brw);
     Task<Response<LoanModel>> CreateLoanOrder(OrderModel order);
     Task<Response<LoanModel>> ReturnBook(int loan_id);
+    Task<Response<UserModel>> CreateUserInfo(UserModel user);
+    Task<Response<UserModel>> CreateUserToken(UserModel user);
+    Task<Response<UserModel>> ClearUserToken(string userEmail);
   }
 
   // class
@@ -36,10 +38,10 @@ namespace library_management_ba.Repository
         response.Data = newBorrower;
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -62,10 +64,10 @@ namespace library_management_ba.Repository
         response.Data = newOrder;
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -89,6 +91,82 @@ namespace library_management_ba.Repository
       catch
       {
         response.errorResp();
+        throw;
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<UserModel>> CreateUserInfo(UserModel user)
+    {
+      var response = new Response<UserModel>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+          .AddParam("@userFullname", user.userFullname)
+          .AddParam("@userEmail", user.userEmail)
+          .AddParam("@userPassword", user.userPassword)
+          .AddParam("@userRole", user.userRole);
+        var userInfo = await _provider.QueryFirstOrDefaultAsync<UserModel>("spUser_Create", param, commandType: CommandType.StoredProcedure);
+        response.Data = userInfo;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+        throw;
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<UserModel>> CreateUserToken(UserModel user)
+    {
+      var response = new Response<UserModel>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+          .AddParam("@userEmail", user.userEmail)
+          .AddParam("@userToken", user.userToken);
+        var userInfo = await _provider.QueryFirstOrDefaultAsync<UserModel>("spUserToken_Insert", param, commandType: CommandType.StoredProcedure);
+        response.Data = userInfo;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+        throw;
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+    public async Task<Response<UserModel>> ClearUserToken(string userEmail)
+    {
+      var response = new Response<UserModel>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+          .AddParam("@userEmail", userEmail);
+        var userInfo = await _provider.QueryFirstOrDefaultAsync<UserModel>("spUserToken_Clear", param, commandType: CommandType.StoredProcedure);
+        response.Data = userInfo;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+        throw;
       }
       finally
       {

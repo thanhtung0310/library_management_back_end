@@ -3,19 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace library_management_ba.Entities
 {
-  public class tbl_library_branch
+  [Table("tbl_library_branch")]
+  public class Branche
   {
     [Key]
     [NotMapped]
-    [Display(Name = "branch_id")]
-    public int library_branch_BranchID { get; set; }
+    [Column("library_branch_BranchID")]
+    public int branchID { get; set; }
     [Required]
     [StringLength(100)]
-    [Display(Name = "branch_name")]
-    public string? library_branch_BranchName { get; set; }
+    [Column("library_branch_BranchName")]
+    public string? branchName { get; set; }
     [Required]
     [StringLength(200)]
-    [Display(Name = "branch_address")]
-    public string? library_branch_BranchAddress { get; set; }
+    [Column("library_branch_BranchAddress")]
+    public string? branchAddr { get; set; }
   }
 }

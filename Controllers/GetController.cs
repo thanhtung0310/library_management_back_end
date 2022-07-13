@@ -76,5 +76,29 @@ namespace library_management_ba.Controllers
     {
       return await _service.GetAvailCopyByBranchList(branch_id);
     }
+
+    // PROCEDURE: Get list of all users
+    // GET: get/users_list
+    [HttpGet("users_list")]
+    public async Task<Response<List<UserModel>>> GetUsersList()
+    {
+      return await _service.GetUsersList();
+    }
+
+    // PROCEDURE: Get user information based on their email
+    // GET: get/user_info/all/admin
+    [HttpGet("user_info/all/{userEmail}")]
+    public async Task<Response<UserModel>> GetUserInfo(string userEmail)
+    {
+      return await _service.GetUserInfo(userEmail);
+    }
+
+    // PROCEDURE: Get user password based on their email
+    // GET: get/user_info/pwd/admin
+    [HttpGet("user_info/pwd/{userEmail}")]
+    public async Task<Response<UserModel>> GetUserPwd(string userEmail)
+    {
+      return await _service.GetUserPwd(userEmail);
+    }
   }
 }

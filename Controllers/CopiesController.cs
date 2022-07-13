@@ -23,39 +23,39 @@ namespace library_management_ba.Controllers
 
     // GET: api/Copies
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<tbl_book_copies>>> GetCopies()
+    public async Task<ActionResult<IEnumerable<CopiesNumber>>> GetCopies()
     {
-      if (_context.tbl_book_copies == null)
+      if (_context.CopiesNumbers == null)
       {
         return NotFound();
       }
-      return await _context.tbl_book_copies.ToListAsync();
+      return await _context.CopiesNumbers.ToListAsync();
     }
 
     // GET: api/Copies/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<tbl_book_copies>> GetCopy(int id)
+    public async Task<ActionResult<CopiesNumber>> GetCopy(int id)
     {
-      if (_context.tbl_book_copies == null)
+      if (_context.CopiesNumbers == null)
       {
         return NotFound();
       }
-      var tbl_book_copies = await _context.tbl_book_copies.FindAsync(id);
+      var CopiesNumber = await _context.CopiesNumbers.FindAsync(id);
 
-      if (tbl_book_copies == null)
+      if (CopiesNumber == null)
       {
         return NotFound();
       }
 
-      return tbl_book_copies;
+      return CopiesNumber;
     }
 
     // PUT: api/Copies/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateCopy(int id, tbl_book_copies copy)
+    public async Task<IActionResult> UpdateCopy(int id, CopiesNumber copy)
     {
-      if (id != copy.book_copies_CopiesID)
+      if (id != copy.copiesID)
       {
         return BadRequest();
       }
@@ -84,33 +84,33 @@ namespace library_management_ba.Controllers
     // POST: api/Copies
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
-    public async Task<ActionResult<tbl_book_copies>> CreateCopy(tbl_book_copies copy)
+    public async Task<ActionResult<CopiesNumber>> CreateCopy(CopiesNumber copy)
     {
-      if (_context.tbl_book_copies == null)
+      if (_context.CopiesNumbers == null)
       {
-        return Problem("Entity set 'DatabaseContext.tbl_book_copies' is null.");
+        return Problem("Entity set 'DatabaseContext.CopiesNumber' is null.");
       }
-      _context.tbl_book_copies.Add(copy);
+      _context.CopiesNumbers.Add(copy);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetCopy", new { id = copy.book_copies_CopiesID }, copy);
+      return CreatedAtAction("GetCopy", new { id = copy.copiesID }, copy);
     }
 
     // DELETE: api/Copies/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCopy(int id)
     {
-      if (_context.tbl_book_copies == null)
+      if (_context.CopiesNumbers == null)
       {
         return NotFound();
       }
-      var tbl_book_copies = await _context.tbl_book_copies.FindAsync(id);
-      if (tbl_book_copies == null)
+      var CopiesNumber = await _context.CopiesNumbers.FindAsync(id);
+      if (CopiesNumber == null)
       {
         return NotFound();
       }
 
-      _context.tbl_book_copies.Remove(tbl_book_copies);
+      _context.CopiesNumbers.Remove(CopiesNumber);
       await _context.SaveChangesAsync();
 
       return NoContent();
@@ -118,7 +118,7 @@ namespace library_management_ba.Controllers
 
     private bool copyExists(int id)
     {
-      return (_context.tbl_book_copies?.Any(e => e.book_copies_CopiesID == id)).GetValueOrDefault();
+      return (_context.CopiesNumbers?.Any(e => e.copiesID == id)).GetValueOrDefault();
     }
   }
 }

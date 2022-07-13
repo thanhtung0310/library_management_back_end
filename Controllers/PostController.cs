@@ -36,5 +36,29 @@ namespace library_management_ba.Controllers
     {
       return await _service.ReturnBook(loan_id);
     }
+
+    // PROCEDURE: Create new user
+    // POST: post/user_info/create
+    [HttpPost("user_info/create")]
+    public async Task<Response<UserModel>> CreateUserInfo([FromBody] UserModel user)
+    {
+      return await _service.CreateUserInfo(user);
+    }
+
+    // PROCEDURE: Create logged-in token for user
+    // POST: post/user_info/create
+    [HttpPost("user_info/token/create")]
+    public async Task<Response<UserModel>> CreateUserToken([FromBody] UserModel user)
+    {
+      return await _service.CreateUserToken(user);
+    }
+
+    // PROCEDURE: Clear logged-in token for user when log-out
+    // POST: post/user_info/create/admin
+    [HttpPost("user_info/token/clear/{userEmail}")]
+    public async Task<Response<UserModel>> ClearUserToken(string userEmail)
+    {
+      return await _service.ClearUserToken(userEmail);
+    }
   }
 }

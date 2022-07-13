@@ -23,39 +23,39 @@ namespace library_management_ba.Controllers
 
     // GET: api/Borrowers
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<tbl_borrower>>> GetBorrowers()
+    public async Task<ActionResult<IEnumerable<Borrower>>> GetBorrowers()
     {
-      if (_context.tbl_borrower == null)
+      if (_context.Borrowers == null)
       {
         return NotFound();
       }
-      return await _context.tbl_borrower.ToListAsync();
+      return await _context.Borrowers.ToListAsync();
     }
 
     // GET: api/Borrowers/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<tbl_borrower>> GetBorrower(int id)
+    public async Task<ActionResult<Borrower>> GetBorrower(int id)
     {
-      if (_context.tbl_borrower == null)
+      if (_context.Borrowers == null)
       {
         return NotFound();
       }
-      var tbl_borrower = await _context.tbl_borrower.FindAsync(id);
+      var Borrower = await _context.Borrowers.FindAsync(id);
 
-      if (tbl_borrower == null)
+      if (Borrower == null)
       {
         return NotFound();
       }
 
-      return tbl_borrower;
+      return Borrower;
     }
 
     // PUT: api/Borrowers/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateBorrower(int id, tbl_borrower borrower)
+    public async Task<IActionResult> UpdateBorrower(int id, Borrower borrower)
     {
-      if (id != borrower.borrower_CardNo)
+      if (id != borrower.borrowerID)
       {
         return BadRequest();
       }
@@ -84,33 +84,33 @@ namespace library_management_ba.Controllers
     // POST: api/Borrowers
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
-    public async Task<ActionResult<tbl_borrower>> CreateBorrower(tbl_borrower borrower)
+    public async Task<ActionResult<Borrower>> CreateBorrower(Borrower borrower)
     {
-      if (_context.tbl_borrower == null)
+      if (_context.Borrowers == null)
       {
-        return Problem("Entity set 'DatabaseContext.tbl_borrower' is null.");
+        return Problem("Entity set 'DatabaseContext.Borrower' is null.");
       }
-      _context.tbl_borrower.Add(borrower);
+      _context.Borrowers.Add(borrower);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetBorrower", new { id = borrower.borrower_CardNo }, borrower);
+      return CreatedAtAction("GetBorrower", new { id = borrower.borrowerID }, borrower);
     }
 
     // DELETE: api/Borrowers/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteBorrower(int id)
     {
-      if (_context.tbl_borrower == null)
+      if (_context.Borrowers == null)
       {
         return NotFound();
       }
-      var tbl_borrower = await _context.tbl_borrower.FindAsync(id);
-      if (tbl_borrower == null)
+      var Borrower = await _context.Borrowers.FindAsync(id);
+      if (Borrower == null)
       {
         return NotFound();
       }
 
-      _context.tbl_borrower.Remove(tbl_borrower);
+      _context.Borrowers.Remove(Borrower);
       await _context.SaveChangesAsync();
 
       return NoContent();
@@ -118,7 +118,7 @@ namespace library_management_ba.Controllers
 
     private bool borrowerExists(int id)
     {
-      return (_context.tbl_borrower?.Any(e => e.borrower_CardNo == id)).GetValueOrDefault();
+      return (_context.Borrowers?.Any(e => e.borrowerID == id)).GetValueOrDefault();
     }
   }
 }

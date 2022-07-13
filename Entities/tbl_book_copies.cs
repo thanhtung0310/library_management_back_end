@@ -3,20 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace library_management_ba.Entities
 {
-  public class tbl_book_copies
+  [Table("tbl_book_copies")]
+  public class CopiesNumber
   {
     [Key]
     [NotMapped]
-    [Display(Name = "Id")]
-    public int book_copies_CopiesID { get; set; }
+    [Column("book_copies_CopiesID")]
+    public int copiesID { get; set; }
     [Required]
-    [Display(Name = "book_id")]
-    public int book_copies_BookID { get; set; }
+    [Column("book_copies_BookID")]
+    public int copies_BookID { get; set; }
     [Required]
-    [Display(Name = "branch_id")]
-    public int book_copies_BranchID { get; set; }
+    [Column("book_copies_BranchID")]
+    public int copies_BranchID { get; set; }
     [Required]
-    [Display(Name = "number_of_copies")]
-    public int book_copies_No_Of_Copies { get; set; }
+    [Column("book_copies_No_Of_Copies")]
+    public int copiesNum { get; set; }
   }
 }

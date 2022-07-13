@@ -9,6 +9,8 @@ namespace library_management_ba.Repository
   public interface IGetService
   {
     Task<Response<List<BookModel>>> GetBookList();
+    Task<Response<List<LoanModel>>> GetBookOnLoanList(int borrower_id, int book_id);
+    Task<Response<List<LoanModel>>> GetBorrowerOnLoanList(int borrower_id);
     Task<Response<List<LoanModel>>> GetLoanList();
     Task<Response<List<CopyModel>>> GetTotalCopyList();
     Task<Response<List<CopyModel>>> GetTotalCopyByBranchList(int branch_id);
@@ -17,8 +19,9 @@ namespace library_management_ba.Repository
     Task<Response<List<BookModel>>> SearchBook(string search_string);
     Task<Response<List<PublisherModel>>> SearchPublisher(string search_string);
     Task<Response<List<AuthorModel>>> SearchAuthor(string search_string);
-    Task<Response<List<LoanModel>>> GetBookOnLoanList(int borrower_id, int book_id);
-    Task<Response<List<LoanModel>>> GetBorrowerOnLoanList(int borrower_id);
+    Task<Response<List<UserModel>>> GetUsersList();
+    Task<Response<UserModel>> GetUserInfo(string userEmail);
+    Task<Response<UserModel>> GetUserPwd(string userEmail);
   }
 
   // class
@@ -40,10 +43,10 @@ namespace library_management_ba.Repository
         response.Data = bookList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -62,10 +65,10 @@ namespace library_management_ba.Repository
         response.Data = loanList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -84,10 +87,10 @@ namespace library_management_ba.Repository
         response.Data = copyList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -108,10 +111,10 @@ namespace library_management_ba.Repository
         response.Data = copyList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -130,10 +133,10 @@ namespace library_management_ba.Repository
         response.Data = copyList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -154,10 +157,10 @@ namespace library_management_ba.Repository
         response.Data = copyList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -178,10 +181,10 @@ namespace library_management_ba.Repository
         response.Data = bookList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -202,10 +205,10 @@ namespace library_management_ba.Repository
         response.Data = publisherList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -226,10 +229,10 @@ namespace library_management_ba.Repository
         response.Data = authorList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -251,10 +254,10 @@ namespace library_management_ba.Repository
         response.Data = loanList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
       }
       finally
       {
@@ -275,10 +278,80 @@ namespace library_management_ba.Repository
         response.Data = loanList.AsList();
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        // throw ex;
+        throw;
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<List<UserModel>>> GetUsersList()
+    {
+      var response = new Response<List<UserModel>>();
+      try
+      {
+        _provider.Open();
+        var userList = await _provider.QueryAsync<UserModel>("spUsers_GetAll", commandType: CommandType.StoredProcedure);
+        response.Data = userList.AsList();
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+        throw;
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<UserModel>> GetUserInfo(string userEmail)
+    {
+      var response = new Response<UserModel>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+          .AddParam("@userEmail", userEmail);
+        var userInfo = await _provider.QueryFirstOrDefaultAsync<UserModel>("spUser_Get", param, commandType: CommandType.StoredProcedure);
+        response.Data = userInfo;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+        throw;
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<UserModel>> GetUserPwd(string userEmail)
+    {
+      var response = new Response<UserModel>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+          .AddParam("@userEmail", userEmail);
+        var userInfo = await _provider.QueryFirstOrDefaultAsync<UserModel>("spUserPwd_Get", param, commandType: CommandType.StoredProcedure);
+        response.Data = userInfo;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+        throw;
       }
       finally
       {

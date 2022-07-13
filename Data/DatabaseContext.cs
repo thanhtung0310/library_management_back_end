@@ -11,31 +11,32 @@ namespace library_management_ba.Data
 
     }
 
-    // public DbSet<TodoItem> TodoItems { get; set; } = null!;
-    public DbSet<tbl_book>? tbl_book { get; set; }
-    public DbSet<tbl_book_authors>? tbl_book_authors { get; set; }
-    public DbSet<tbl_book_copies>? tbl_book_copies { get; set; }
-    public DbSet<tbl_book_loans>? tbl_book_loans { get; set; }
-    public DbSet<tbl_borrower>? tbl_borrower { get; set; }
-    public DbSet<tbl_library_branch>? tbl_library_branch { get; set; }
-    public DbSet<tbl_publisher>? tbl_publisher { get; set; }
+    public DbSet<Book>? Books { get; set; }
+    public DbSet<Author>? Authors { get; set; }
+    public DbSet<CopiesNumber>? CopiesNumbers { get; set; }
+    public DbSet<LoanOrder>? LoanOrders { get; set; }
+    public DbSet<Borrower>? Borrowers { get; set; }
+    public DbSet<Branche>? Branches { get; set; }
+    public DbSet<Publisher>? Publishers { get; set; }
+    public DbSet<User>? Users { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
-      builder.Entity<tbl_book>()
-        .HasKey("book_BookID");
-      builder.Entity<tbl_book_authors>()
-        .HasKey("book_authors_AuthorID");
-      builder.Entity<tbl_book_copies>()
-        .HasKey("book_copies_CopiesID");
-      builder.Entity<tbl_book_loans>()
-        .HasKey("book_loans_LoansID");
-      builder.Entity<tbl_borrower>()
-        .HasKey("borrower_CardNo");
-      builder.Entity<tbl_library_branch>()
-        .HasKey("library_branch_BranchID");
-      builder.Entity<tbl_publisher>()
-        .HasKey("publisher_PublisherID");
-
+      builder.Entity<Book>()
+        .HasKey("bookID");
+      builder.Entity<Borrower>()
+        .HasKey("borrowerID");
+      builder.Entity<Publisher>()
+        .HasKey("publisherID");
+      builder.Entity<LoanOrder>()
+        .HasKey("loanID");
+      builder.Entity<CopiesNumber>()
+        .HasKey("copiesID");
+      builder.Entity<Author>()
+        .HasKey("authorID");
+      builder.Entity<Branche>()
+        .HasKey("branchID");
+      builder.Entity<User>()
+        .HasKey("userID");
 
       base.OnModelCreating(builder);
     }

@@ -23,39 +23,39 @@ namespace library_management_ba.Controllers
 
     // GET: api/Branches
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<tbl_library_branch>>> GetBranches()
+    public async Task<ActionResult<IEnumerable<Branche>>> GetBranches()
     {
-      if (_context.tbl_library_branch == null)
+      if (_context.Branches == null)
       {
         return NotFound();
       }
-      return await _context.tbl_library_branch.ToListAsync();
+      return await _context.Branches.ToListAsync();
     }
 
     // GET: api/Branches/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<tbl_library_branch>> GetBranch(int id)
+    public async Task<ActionResult<Branche>> GetBranch(int id)
     {
-      if (_context.tbl_library_branch == null)
+      if (_context.Branches == null)
       {
         return NotFound();
       }
-      var tbl_library_branch = await _context.tbl_library_branch.FindAsync(id);
+      var Branche = await _context.Branches.FindAsync(id);
 
-      if (tbl_library_branch == null)
+      if (Branche == null)
       {
         return NotFound();
       }
 
-      return tbl_library_branch;
+      return Branche;
     }
 
     // PUT: api/Branches/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateBranch(int id, tbl_library_branch branch)
+    public async Task<IActionResult> UpdateBranch(int id, Branche branch)
     {
-      if (id != branch.library_branch_BranchID)
+      if (id != branch.branchID)
       {
         return BadRequest();
       }
@@ -84,33 +84,33 @@ namespace library_management_ba.Controllers
     // POST: api/Branches
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
-    public async Task<ActionResult<tbl_library_branch>> CreateBranch(tbl_library_branch branch)
+    public async Task<ActionResult<Branche>> CreateBranch(Branche branch)
     {
-      if (_context.tbl_library_branch == null)
+      if (_context.Branches == null)
       {
-        return Problem("Entity set 'DatabaseContext.tbl_library_branch' is null.");
+        return Problem("Entity set 'DatabaseContext.Branche' is null.");
       }
-      _context.tbl_library_branch.Add(branch);
+      _context.Branches.Add(branch);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetBranch", new { id = branch.library_branch_BranchID }, branch);
+      return CreatedAtAction("GetBranch", new { id = branch.branchID }, branch);
     }
 
     // DELETE: api/Branches/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteBranch(int id)
     {
-      if (_context.tbl_library_branch == null)
+      if (_context.Branches == null)
       {
         return NotFound();
       }
-      var tbl_library_branch = await _context.tbl_library_branch.FindAsync(id);
-      if (tbl_library_branch == null)
+      var Branche = await _context.Branches.FindAsync(id);
+      if (Branche == null)
       {
         return NotFound();
       }
 
-      _context.tbl_library_branch.Remove(tbl_library_branch);
+      _context.Branches.Remove(Branche);
       await _context.SaveChangesAsync();
 
       return NoContent();
@@ -118,7 +118,7 @@ namespace library_management_ba.Controllers
 
     private bool branchExists(int id)
     {
-      return (_context.tbl_library_branch?.Any(e => e.library_branch_BranchID == id)).GetValueOrDefault();
+      return (_context.Branches?.Any(e => e.branchID == id)).GetValueOrDefault();
     }
   }
 }
