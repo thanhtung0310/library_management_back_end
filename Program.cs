@@ -8,11 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // get connection String
 var connectionString = builder.Configuration.GetConnectionString("WebApiDatabase");
+// var connectionString = @"data source=ADMIN-PC\SQLEXPRESS;initial catalog=VMO_LibraryManagementSystem;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework;User Id=chris;Password=tung031099;";
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DatabaseContext>((options) =>
 {
+  // options.UseSqlServer(connectionString);
   options.UseSqlServer(connectionString);
 });
 

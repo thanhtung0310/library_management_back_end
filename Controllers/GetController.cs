@@ -1,11 +1,11 @@
+using Microsoft.AspNetCore.Mvc;
+using library_management_ba.Repository;
+using library_management_ba.Models;
+using library_management_back_end.Controllers;
+
 namespace library_management_ba.Controllers
 {
-  using Microsoft.AspNetCore.Mvc;
-  using library_management_ba.Repository;
-  using library_management_ba.Models;
-  [Route("[controller]")]
-  [ApiController]
-  public class GetController : ControllerBase
+  public class GetController : BaseController
   {
     private readonly IGetService _service;
     public GetController(IGetService service)

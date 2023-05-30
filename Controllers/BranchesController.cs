@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using library_management_ba.Entities;
 using library_management_ba.Data;
+using library_management_back_end.Controllers;
 
 namespace library_management_ba.Controllers
 {
-  [Route("api/[controller]")]
-  [ApiController]
-  public class BranchesController : ControllerBase
+  public class BranchesController : BaseController
   {
     private readonly DatabaseContext _context;
 

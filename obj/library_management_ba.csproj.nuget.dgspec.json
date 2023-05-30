@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj": {}
+    "D:\\Work\\projects_demo\\library_management_back_end\\library_management_ba.csproj": {}
   },
   "projects": {
-    "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj": {
+    "D:\\Work\\projects_demo\\library_management_back_end\\library_management_ba.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj",
+        "projectUniqueName": "D:\\Work\\projects_demo\\library_management_back_end\\library_management_ba.csproj",
         "projectName": "library_management_ba",
-        "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\library_management_ba.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\vuejs-typescript-projects\\library_management_ba\\obj\\",
+        "projectPath": "D:\\Work\\projects_demo\\library_management_back_end\\library_management_ba.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\projects_demo\\library_management_back_end\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -71,7 +73,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -83,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
